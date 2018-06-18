@@ -54,7 +54,11 @@ def deplog(text):
 
 
 def iaslog(text):
-    NSLog('[InstallApplications] ' + text)
+    try:
+        NSLog('[InstallApplications] ' + text)
+    except:
+        badlog = 'BAD NSLOG + ' str(text)
+        deplog(badlog)
 
 
 def getconsoleuser():
