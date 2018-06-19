@@ -57,7 +57,7 @@ def iaslog(text):
     try:
         NSLog('[InstallApplications] ' + text)
     except:
-        badlog = 'BAD NSLOG + ' str(text)
+        badlog = 'BAD NSLOG ' + str(text)
         deplog(badlog)
 
 
