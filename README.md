@@ -274,13 +274,20 @@ The following is an example JSON:
 
 URLs should not be subject to redirection, or there may be unintended behavior. Please link directly to the URI of the package.
 
-You may have more than one package in each stage. Packages will be deployed in alphabetical order, not listed order, so if you want packages installed in a certain order, begin their file names with 1-, 2-, 3- as the case may be.
+You may have more than one package and script in each stage. Packages and scripts will be deployed in the order listed.
 
 ### Creating your JSON
 
 Using `generatejson.py` you can automatically generate the json with the file, hash, and name keys populated (you'll need to upload the packages to a server and update the url keys).
 
-You can pass an unlimited amount of `--item` arguments, but each one must have all six meta-variables. If you do not want to enter one of the meta-variables, simple pass a blank string `''`.
+You can pass an unlimited amount of `--item` arguments, each one with the following meta-variables. Please note that currently _all_ of these meta-variables are **required**:
+* item-name - required, sets the display name that will show in DEPNotify
+* item-path - required, path on the local disk to the item you want to include
+* item-stage - required, defaults to userland if not specified
+* item-type - required, generatejson will detect package vs script. Scripts default to rootscript, so pass "userscript" to this variable if your item is a userscript.
+* item-url - required, if --base-url is set generatejson will auto-generate the URL as base-url/stage/item-file-name. You can override this automatic generation by passing a URL to the item here.
+* script-do-not-wait - required, only applies to userscript and rootscript item-types. Defaults to false.
+
 
 Run the tool:
 ```
